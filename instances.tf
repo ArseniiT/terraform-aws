@@ -6,6 +6,8 @@ resource "aws_instance" "mysql" {
   subnet_id              = aws_subnet.private_1.id
   vpc_security_group_ids = [aws_security_group.db_sg.id]
 
+  depends_on = [aws_nat_gateway.nat]
+
   # Install MySQL and create Gestion database
   user_data = <<-EOF
     #!/bin/bash
