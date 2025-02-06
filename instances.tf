@@ -14,6 +14,7 @@ resource "aws_instance" "mysql" {
     sudo systemctl enable mysql
 
     sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+    sudo sed -i 's/^mysqlx-bind-address\s*=.*/mysqlx-bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
     sudo systemctl restart mysql
 
     mysql -u root -e "CREATE DATABASE Gestion;"
