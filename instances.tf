@@ -3,6 +3,7 @@ resource "aws_instance" "mysql" {
   ami                    = "ami-04b4f1a9cf54c11d0" # Ubuntu 24.04
   instance_type          = "t2.micro"
   key_name               = "vockey"
+  subnet_id              = aws_subnet.private_1.id
   vpc_security_group_ids = [aws_security_group.db_sg.id]
 
   # Install MySQL and create Gestion database
@@ -46,8 +47,9 @@ resource "aws_instance" "apache_php" {
     instance_type = "t2.micro"
     # Key pair nom for SSH access
     key_name = "vockey"
-    # Security group, "aws_security_group" "apache_php_sg" is created in securitygroup.tf
-    vpc_security_group_ids = [aws_security_group.apache_php_sg.id]
+    subnet_id                   = aws_subnet.public_1.id
+    vpc_security_group_ids      = [aws_security_group.apache_php_sg.id]
+    associate_public_ip_address = true
 
     # script to install apache server and PHP
     user_data = <<-EOF
