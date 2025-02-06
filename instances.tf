@@ -14,14 +14,20 @@ resource "aws_instance" "mysql" {
     sudo systemctl start mysql
     sudo systemctl enable mysql
 
+    sudo systemctl status mysql > /var/log/mysql_status.log
+
     sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
     sudo sed -i 's/^mysqlx-bind-address\s*=.*/mysqlx-bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
     sudo systemctl restart mysql
+
+    sudo systemctl status mysql >> /var/log/mysql_status.log
 
     mysql -u root -e "CREATE DATABASE Gestion;"
     mysql -u root -e "CREATE USER '${var.db_username}'@'%' IDENTIFIED BY '${var.db_password}';"
     mysql -u root -e "GRANT ALL PRIVILEGES ON Gestion.* TO '${var.db_username}'@'%';"
     mysql -u root -e "FLUSH PRIVILEGES;"
+
+    mysql -u root -e "SHOW DATABASES;" >> /var/log/mysql_create_db.log 2>&1
 
     mysql -u ${var.db_username} -p${var.db_password} -e "
       USE Gestion;
@@ -30,7 +36,7 @@ resource "aws_instance" "mysql" {
         nom VARCHAR(100),
         prenom VARCHAR(100)
       );
-      INSERT INTO Personne (nom, prenom) VALUES ('Thornton', 'Bob');
+    INSERT INTO Personne (nom, prenom) VALUES ('Thornton', 'Bob');
     "
   EOF
 
