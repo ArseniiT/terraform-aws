@@ -10,10 +10,11 @@ resource "aws_instance" "mysql" {
     #!/bin/bash
     sudo apt update -y
     sudo apt install mysql-server -y
-    sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
-
     sudo systemctl start mysql
     sudo systemctl enable mysql
+
+    sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+    sudo systemctl restart mysql
 
     mysql -u root -e "CREATE DATABASE Gestion;"
     mysql -u root -e "CREATE USER '${var.db_username}'@'%' IDENTIFIED BY '${var.db_password}';"
