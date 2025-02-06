@@ -1,5 +1,1 @@
 /.vagrant
-/instances.tf
-/network.tf
-/provider.tf
-/securitygroup.tf
