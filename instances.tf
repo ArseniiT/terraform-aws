@@ -9,6 +9,13 @@ resource "aws_instance" "mysql" {
   # Install MySQL and create Gestion database
   user_data = <<-EOF
     #!/bin/bash
+
+    # Wait for internet сщттусешщт to be available
+    while ! ping -c 1 -W 1 8.8.8.8; do
+        echo "Waiting for internet access..."
+        sleep 5
+    done
+
     sudo apt update -y
     sudo apt install mysql-server -y
     sudo systemctl start mysql
