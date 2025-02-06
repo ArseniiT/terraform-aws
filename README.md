@@ -13,7 +13,7 @@ db_username = "***"
 db_password = "***"
 ```
 Apply Terraform configuration
-
+```
 terraform apply -var-file="terraform.tfvars"
 ```
 
