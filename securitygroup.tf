@@ -2,9 +2,17 @@
 resource "aws_security_group" "web_sg" {
     name = "allow_ssh_http"
     description = "Allow SSH and HTTP inbound traffic"
+    # ssh access
     ingress {
         from_port = 22
         to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    # http access
+    ingress {
+        from_port = 80
+        to_port = 80
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }

@@ -9,6 +9,16 @@ resource "aws_instance" "ubuntu_ec2" {
     # Security group, "aws_security_group" "web_sg" is created in securitygroup.tf
     vpc_security_group_ids = [aws_security_group.web_sg.id]
 
+    # script to install apache server
+    user_data = <<-EOF
+        #!/bin/bash
+        sudo apt update -y
+        sudo apt install apache2 -y
+        sudo systemctl start apache2
+        sudo systemctl enable apache2
+        echo "<h1>Apache server is working</h1>" | sudo tee /var/www/html/index.html
+    EOF
+
     tags = {
         Name = "ubuntu_ec2"
     }
