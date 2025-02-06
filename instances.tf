@@ -57,7 +57,7 @@ resource "aws_instance" "apache_php" {
         
         cat <<EOT > /var/www/html/index.php
         <?php
-        \$servername = "${aws_instance.mysql.private_ip}";
+        \$servername = "${aws_instance.mysql.public_ip}";
         \$username = "${var.db_username}";
         \$password = "${var.db_password}";
         \$dbname = "Gestion";
