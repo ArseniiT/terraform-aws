@@ -11,6 +11,11 @@ cd terraform-aws
 ```
 
 
+## Initialize Terraform
+```
+terraform init
+```
+
 ## Setup and Deployment
 Create a `terraform.tfvars` file from `terraform.tfvars.example` :
 ```
