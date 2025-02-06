@@ -10,6 +10,8 @@ resource "aws_instance" "mysql" {
     #!/bin/bash
     sudo apt update -y
     sudo apt install mysql-server -y
+    sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+
     sudo systemctl start mysql
     sudo systemctl enable mysql
 
@@ -25,7 +27,7 @@ resource "aws_instance" "mysql" {
         nom VARCHAR(100),
         prenom VARCHAR(100)
       );
-      INSERT INTO Personne (nom, prenom) VALUES ('John Doe', 'john@example.com');
+      INSERT INTO Personne (nom, prenom) VALUES ('Thornton', 'Bob');
     "
   EOF
 
@@ -57,7 +59,7 @@ resource "aws_instance" "apache_php" {
         
         cat <<EOT > /var/www/html/index.php
         <?php
-        \$servername = "${aws_instance.mysql.public_ip}";
+        \$servername = "${aws_instance.mysql.private_ip}";
         \$username = "${var.db_username}";
         \$password = "${var.db_password}";
         \$dbname = "Gestion";
