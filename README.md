@@ -7,13 +7,13 @@ This Terraform project creates two EC2 instances on AWS:
 
 
 ## Setup and Deployment
-Create a `terraform.tfvars` file:
+Create a `terraform.tfvars` file or use `terraform.tfvars.example`as example:
 ```
 db_username = "***"
 db_password = "***"
 ```
 Apply Terraform configuration
-```
+
 terraform apply -var-file="terraform.tfvars"
 ```
 
