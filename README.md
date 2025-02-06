@@ -33,9 +33,3 @@ Apply the Terraform configuration
 terraform apply -var-file="terraform.tfvars"
 ```
 
-
-
-### Clone this repository
-```bash
-git clone https://github.com/ArseniiT/terraform-aws.git
-cd terraform-aws
