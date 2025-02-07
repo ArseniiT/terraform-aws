@@ -76,12 +76,15 @@ Vagrant.configure("2") do |config|
     sh get-docker.sh
     sudo usermod -aG docker $USER
     newgrp docker
-    wget -O - https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-    apt update -y
-    apt install terraform -y
+
+    sudo apt update -y
+    sudo apt-get install unzip -y
+
+    curl -O https://releases.hashicorp.com/terraform/1.10.5/terraform_1.10.5_linux_amd64.zip
+    unzip terraform_1.10.5_linux_amd64.zip
+    sudo mv terraform /usr/local/bin/
+
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    apt-get install unzip -y
     unzip awscliv2.zip
     ./aws/install
   SHELL

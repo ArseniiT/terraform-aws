@@ -4,32 +4,80 @@ This Terraform project creates two EC2 instances on AWS:
 1. **Apache - PHP Server**
 2. **MySQL Server**
 
-### Clone this repository
+
+
+
+## Instructions
+
+### 1. You can run the project inside a Vagrant virtual machine
+This project includes a `Vagrantfile` that allows you to set up a local virtual machine for testing.
+You can run all Terraform commands inside the Vagrant VM.
+
+Start the VM
+```
+vagrant up
+```
+Connect to the VM
+```
+vagrant ssh
+```
+
+
+### 2. Set up AWS credentials inside the VM
+To use Terraform with AWS, you need to configure AWS credentials.
+You can find them under **AWS Academy** => **AWS Details** => **AWS CLI: Show**.
+
+ #### 2.1. Configure AWS CLI with the command:
+
+```
+aws configure
+```
+
+Enter the following details:
+```
+AWS Access Key ID [None]: ***
+AWS Secret Access Key [None]: ***
+Default region name [None]: us-east-1
+Default output format [None]: json
+```
+#### 2.2. To store the credentials on your system, create or open the `~/.aws/credentials` file by running:
+```
+sudo nano ~/.aws/credentials
+```
+Paste all the credentials you obtained from **AWS Academy** into this file.
+
+
+
+### 3. Clone this repository
 ```
 git clone https://github.com/ArseniiT/terraform-aws.git
 cd terraform-aws
 ```
 
 
-## Initialize Terraform
+### 4. Initialize Terraform
 ```
 terraform init
 ```
 
-## Setup and Deployment
+### 5. Setup Database credentials
 Create a `terraform.tfvars` file from `terraform.tfvars.example` :
 ```
 cp terraform.tfvars.example terraform.tfvars
 ```
+```
+sudo nano terraform.tfvars
+```
 
-In `terraform.tfvars` file, replace *** with your credentials.
+In `terraform.tfvars` file, replace *** with any credentials that you want.
 ```
 db_username = "***"
 db_password = "***"
 ```
 
+### 6.  Deployment
 Apply the Terraform configuration
 ```
+terraform plan
 terraform apply -var-file="terraform.tfvars"
 ```
-
