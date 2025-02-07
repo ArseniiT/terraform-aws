@@ -50,8 +50,8 @@ Paste all the credentials you obtained from **AWS Academy** into this file.
 
 ### 3. Clone this repository
 ```
-git clone https://github.com/ArseniiT/terraform-aws.git
-cd terraform-aws
+git clone https://github.com/ArseniiT/tf-aws.git
+cd tf-aws
 ```
 
 
