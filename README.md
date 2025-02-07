@@ -60,24 +60,13 @@ cd terraform-aws
 terraform init
 ```
 
-### 5. Setup Database credentials
-Create a `terraform.tfvars` file from `terraform.tfvars.example` :
-```
-cp terraform.tfvars.example terraform.tfvars
-```
-```
-sudo nano terraform.tfvars
-```
-
-In `terraform.tfvars` file, replace *** with any credentials that you want.
-```
-db_username = "***"
-db_password = "***"
-```
-
-### 6.  Deployment
+### 5.  Deployment
 Apply the Terraform configuration
 ```
 terraform plan
 terraform apply -var-file="terraform.tfvars"
 ```
+
+### 6.  URL
+
+Once Terraform has successfully applied , you will see the public URL in the console output.
