@@ -40,7 +40,7 @@ AWS Secret Access Key [None]: ***
 Default region name [None]: us-east-1
 Default output format [None]: json
 ```
-#### 2.2. To store the credentials on your system, create or open the `~/.aws/credentials` file by running:
+#### 2.2. Create or open the `~/.aws/credentials` file by running:
 ```
 sudo nano ~/.aws/credentials
 ```
@@ -69,4 +69,4 @@ terraform apply -var-file="terraform.tfvars"
 
 ### 6.  URL
 
-Once Terraform has successfully applied , you will see the public URL in the console output.
+Once Terraform has successfully applied , you will see the public URL in the console.
