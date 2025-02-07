@@ -1,4 +1,4 @@
-# AWS Terraform-AWS Project: EC2 with Apache-PHP, and MySQL
+# Terraform-AWS Project: EC2 with Apache-PHP, and MySQL
 
 This Terraform project creates two EC2 instances on AWS:
 1. **Apache - PHP Server**
