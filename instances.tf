@@ -105,3 +105,9 @@ resource "aws_instance" "apache_php" {
         Name = "apache_php"
     }
 }
+
+# Output the URL of the deployed Apache-PHP server for easy access
+output "website_url" {
+  description = "URL of the deployed Apache-PHP server"
+  value       = "http://${aws_instance.apache_php.public_ip}/index.php"
+}
